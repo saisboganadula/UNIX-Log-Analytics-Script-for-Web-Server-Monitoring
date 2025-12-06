@@ -1,0 +1,61 @@
+
+					Group-16 REPORT
+							
+							Kasturi Bala Subramanyam Pavan Kumar
+							baka22@student.bth.se
+
+							Sai Sukheshwar Boganadula
+							sabg22@student.bth.se
+
+Connection Attempts Case C
+
+Which IP addresses makes the most number of connection attempts?
+
+Explanation: In this scenario, IP address occurrences in the log file are counted, sorted by count, and the output may optionally be limited depending on the specified limit.
+Code Syntax: It uses sort and uniq to count occurrences,and grep to extract IP addresses, and awk to format the output. Head -n $l is used to apply the limit.
+
+Case 2: HTTP 200 after successful attempts:
+
+Which IP addresses makes the most number of successful connection
+attempts?
+
+Reason: This example counts the instances of the HTTP status code 200 being successful along with the IP addresses, arranges them by count, and optionally restricts the output.
+Code Syntax: The output is printed using awk, and lines with HTTP status codes 200 are filtered using grep. IP addresses are extracted using cut, and occurrences are counted using sort and uniq. Head -n $l is used to apply the limit.
+
+Case r (Result Codes - HTTP 404, 200, 401, 304, 403, 302):
+
+What are the most common result codes and where do they come from
+(IP number)?
+
+Explanation: This case counts the occurrences of specified HTTP status codes (404, 200, 401, 304, 403, 302) along with IP addresses and displays the count and status code. It can limit the output based on the provided limit.
+Code Summary: It uses grep and cut to filter and extract lines with the specified status codes, sort and uniq to count occurrences, and awk to format the output. Limits are applied with head -n $l.
+
+Case F (Fail Codes - HTTP 404, 401, 403):
+
+What are the most common result codes that indicate failure (no auth,
+not found etc) and where do they come from?
+
+Explanation: This case counts the occurrences of specified HTTP failure status codes (404, 401, 403) along with IP addresses and displays the count and status code. It can limit the output based on the provided limit.
+Code Summary: Similar to the r case, it uses grep, cut, sort, uniq, and awk to handle the filtering, counting, and formatting. Limits are applied with head -n $l.
+
+
+Case t (Sent Bytes):
+
+Which IP number get the most bytes sent to them?
+
+The thttpd.log file is used for calculating the total bytes sent per IP address in this scenario, which then displays both the IP address and the total bytes sent. In accordance with the given limit, it may restrict the output.
+Code Syntax:
+The IP addresses and bytes transferred are extracted from the log file using grep and stored in two files (ips.txt and bytes.txt).
+The result is stored in the file ips_bytes.txt after using paste to merge the IP and bytes data.
+The total number of bytes delivered by each IP is then counted using sort and uniq, and the results are sent to sorted.txt.
+Last but not least, it uses head -n $restrict to optionally restrict the output to the top 10 by sorting sorted.txt by bytes transmitted in descending order.
+
+
+
+Challenges:
+
+Unfamiliarity with shell scripting.
+
+To make code organisation easier, awk has conditional structures that may be used to handle several scenarios (such as various HTTP status codes) in a single script.
+
+Without the need for extra instructions, the awk script can simply counts unique IP addresses and generates the appropriate output.
